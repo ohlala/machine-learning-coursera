@@ -36,15 +36,11 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
-
-
-
-
-
-
-
-
-
+theta_1 = theta(2:end);
+J = 1/m*sum(-y.*log(sigmoid(X*theta))-(1-y).*log(1-sigmoid(X*theta)))+ ...
+    lambda/2/m*sum(theta_1.^2); %这里是总的代价函数 应该是一个标量
+grad = 1/m*X'*(sigmoid(X*theta)-y)+lambda/m*theta;
+grad(1) = 1/m*(X(:,1))'*(sigmoid(X*theta)-y);
 % =============================================================
 
 grad = grad(:);
