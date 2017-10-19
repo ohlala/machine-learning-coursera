@@ -30,7 +30,7 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 h = sigmoid(X*all_theta');
-% pval returns the highest value in each row, while p returns the position in each row
+% 第一个返回值是最大的值 第二个是最大值的索引
 [pval, p]=max(h,[],2); 
 
 % =========================================================================
