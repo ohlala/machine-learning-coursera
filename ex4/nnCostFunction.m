@@ -85,8 +85,16 @@ J =  1/m*sum(sum(-yi.*log(a3)-((1-yi).*log(1-a3))))+...
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
+ 
+% a = 1:10; % Create a and b
+% b = 3;
+% a == b % You should try different values of b here
+delta3 = a3 - yi;
+delta2 = Theta2 * delta3.*sigmoidGradient(z2);
+delta2 = delta2(2:end);
 
-% Theta1_grad = 
+%  Theta2_grad = 
+%  Theta1_grad = 
 % grad = 1/m*X'*(sigmoid(X*theta)-y)+lambda/m*theta;
 % grad(1) = 1/m*(X(:,1))'*(sigmoid(X*theta)-y);
 
