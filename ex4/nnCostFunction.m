@@ -90,13 +90,16 @@ J =  1/m*sum(sum(-yi.*log(a3)-((1-yi).*log(1-a3))))+...
 % b = 3;
 % a == b % You should try different values of b here
 delta3 = a3 - yi;
-delta2 = Theta2 * delta3.*sigmoidGradient(z2);
-delta2 = delta2(2:end);
+z2 = [ones(m,1) z2];
+delta2 = delta3*Theta2.*sigmoidGradient(z2);
+delta2 = delta2(:,2:end);
+DELTA2 = delta3' * a2;
+DELTA1 = delta2' * a1;
 
-%  Theta2_grad = 
-%  Theta1_grad = 
-% grad = 1/m*X'*(sigmoid(X*theta)-y)+lambda/m*theta;
-% grad(1) = 1/m*(X(:,1))'*(sigmoid(X*theta)-y);
+% Theta2_grad = DELTA2/m;
+% Theta1_grad = DELTA1/m;
+% size(Theta2_grad)
+% size(Theta1_grad)
 
 % Part 3: Implement regularization with the cost function and gradients.
 %
@@ -106,11 +109,8 @@ delta2 = delta2(2:end);
 %               and Theta2_grad from Part 2.
 %
 
-
-
-
-
-
+Theta2_grad = [DELTA2(:,1) DELTA2(:,2:end)+lambda*Theta2(:,2:end)]/m;
+Theta1_grad = [DELTA1(:,1) DELTA1(:,2:end)+lambda*Theta1(:,2:end)]/m;
 
 % -------------------------------------------------------------
 
