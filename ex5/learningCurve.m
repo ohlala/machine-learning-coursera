@@ -54,11 +54,11 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
-
-
-
-
-
+for i = 1:m
+    [error_train(i), grad] = linearRegCostFunction([ones(i, 1) X(1:i, :)], y(1:i, :), theta, 1);
+    [error_val(i), grad] = linearRegCostFunction([ones(i, 1) X(1:i, :)], y(1:i, :), theta, 1);
+end
+% 1/m/2*sum((X*theta-y).^2)  vYou can use the trainLinearReg function
 % -------------------------------------------------------------
 
 % =========================================================================
