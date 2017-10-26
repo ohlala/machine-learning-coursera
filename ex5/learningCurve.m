@@ -52,13 +52,28 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
+% for i=1:m
+% 	[theta]=trainLinearReg(X(1:i,:), y(1:i), lambda);
+% 	[e_train]=linearRegCostFunction(X(1:i,:), y(1:i), theta, lambda);
+% 	[e_val]=linearRegCostFunction(Xval, yval, theta, lambda);	% J over all CV set for new set of theta
+% 
+% % Accumulating error from i=1:m
+% 	if (i==1)
+% 		error_train=e_train;
+% 		error_val=e_val;
+% 	else
+% 		error_train=[error_train; e_train];
+% 		error_val=[error_val; e_val];
+% 	end
+% end
 
-
+%交叉验证集用所有样本，数据集逐个增加，训练集和验证集都不加正则项。
 for i = 1:m
-    [error_train(i), grad] = linearRegCostFunction([ones(i, 1) X(1:i, :)], y(1:i, :), theta, 1);
-    [error_val(i), grad] = linearRegCostFunction([ones(i, 1) X(1:i, :)], y(1:i, :), theta, 1);
+    theta = trainLinearReg(X(1:i, :), y(1:i, :), lambda);
+    error_train(i)=1/i/2*sum((X(1:i, :)*theta - y(1:i)).^2);
+    error_val(i)=1/length(yval)/2*sum((Xval*theta - yval).^2);
 end
-% 1/m/2*sum((X*theta-y).^2)  vYou can use the trainLinearReg function
+
 % -------------------------------------------------------------
 
 % =========================================================================

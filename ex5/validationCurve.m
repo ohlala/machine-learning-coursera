@@ -39,15 +39,12 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
-
-
-
-
-
-
-
-
-
+[theta] = trainLinearReg(X_poly, y, lambda);
+ for i = 1:length(lambda_vec)
+      lambda = lambda_vec(i);
+      [error_train(i), error_val(i)] = ...
+        learningCurve(X, y, Xval, yval, lambda);
+ end      
 % =========================================================================
 
 end
