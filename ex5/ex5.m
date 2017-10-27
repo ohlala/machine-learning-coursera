@@ -164,7 +164,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 1;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -192,6 +192,13 @@ for i = 1:m
     fprintf('  \t%d\t\t%f\t%f\n', i, error_train(i), error_val(i));
 end
 
+% %求测试集的误差以对学习效果作出评价
+%     lambda = 3;
+%     theta = trainLinearReg([ones(m, 1) X_poly], y, lambda);
+%     size([ones(length(ytest), 1) X_poly_test])
+%     size(theta)
+%     error=1/length(ytest)/2*sum(([ones(length(ytest), 1) X_poly_test]*theta - ytest).^2)
+%     
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 

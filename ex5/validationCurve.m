@@ -38,13 +38,13 @@ error_val = zeros(length(lambda_vec), 1);
 %       end
 %
 %
-
-[theta] = trainLinearReg(X_poly, y, lambda);
- for i = 1:length(lambda_vec)
-      lambda = lambda_vec(i);
-      [error_train(i), error_val(i)] = ...
-        learningCurve(X, y, Xval, yval, lambda);
- end      
+for i = 1:length(lambda_vec)
+    lambda = lambda_vec(i);
+    theta = trainLinearReg(X, y, lambda);
+    error_train(i)=1/length(y)/2*sum((X*theta - y).^2);
+    error_val(i)=1/length(yval)/2*sum((Xval*theta - yval).^2);
+end
+     
 % =========================================================================
 
 end
