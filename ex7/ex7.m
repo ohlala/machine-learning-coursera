@@ -18,10 +18,6 @@
 %  or any other files other than those mentioned above.
 %
 
-%924926395@qq.com.
-%
-%dFAFO6ceZMkU8mWC
-
 %% Initialization
 clear ; close all; clc
 
@@ -111,6 +107,8 @@ fprintf('\nRunning K-Means clustering on pixels from an image.\n\n');
 
 %  Load an image of a bird
 A = double(imread('bird_small.png'));
+% A = double(imread('test.jpeg'));
+% A = double(imread('test.jpg'));
 
 % If imread does not work for you, you can try instead
 %   load ('bird_small.mat');
